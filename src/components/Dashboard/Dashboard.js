@@ -17,6 +17,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import { mainListItems, secondaryListItems } from '../listItems';
+import PieChart from '../PieChart/PieChart';
 import RecordTable from '../RecordTable/RecordTable';
 import useStyles from './styles.js';
 
@@ -79,15 +80,17 @@ export default function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={2}>
             {/* Chart put next note*/}
-            <Grid item xs={12} md={8} lg={9}>
+            <Grid item xs={12} md={5} lg={7}>
               <Paper className={fixedHeightPaper}>
                 {/* <Chart /> */}
+                
               </Paper>
             </Grid>
-            {/* Recent Deposits put next note*/}
-            <Grid item xs={12} md={4} lg={3}>
+            {/* PieChart puts here put next note*/}
+            {/* lg controls the widen */}
+            <Grid item xs={12} md={7} lg={5}>
               <Paper className={fixedHeightPaper}>
-                {/* <Deposits /> */}
+                <PieChart />
               </Paper>
             </Grid>
             {/* Recent Orders */}
