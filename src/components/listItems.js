@@ -8,14 +8,15 @@ import MapIcon from '@material-ui/icons/Map';
 import SettingsIcon from '@material-ui/icons/Settings';
 import PeopleIcon from '@material-ui/icons/People';
 
-
 export const mainListItems = (
+  // ListItem button link is added after
   <div>
     <ListItem button>
-      <ListItemIcon>
+      <ListItemIcon>      
         <DashboardIcon />
-       </ListItemIcon>
+      </ListItemIcon>
       <ListItemText primary="Dashboard" />
+  
     </ListItem>
    
   

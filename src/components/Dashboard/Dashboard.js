@@ -14,7 +14,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import MailIcon from '@material-ui/icons/Mail';
 
 import { mainListItems, secondaryListItems } from '../listItems';
 import PieChart from '../PieChart/PieChart';
@@ -52,8 +52,8 @@ export default function Dashboard() {
             Dashboard
           </Typography>
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
+            <Badge variant= "dot" color="secondary">
+              <MailIcon />
             </Badge>
           </IconButton>
         </Toolbar>
