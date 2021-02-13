@@ -7,25 +7,34 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import MapIcon from '@material-ui/icons/Map';
 import SettingsIcon from '@material-ui/icons/Settings';
 import PeopleIcon from '@material-ui/icons/People';
+import {Link} from 'react-router-dom';
 
+const style = {
+  textDecoration:'none',
+  backgroundColor: '#eee'
+}
+ 
 export const mainListItems = (
   // ListItem button link is added after
   <div>
-    <ListItem button>
-      <ListItemIcon>      
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-  
-    </ListItem>
+    <Link style={{ textDecoration:'none', color:'unset'}} to={'/dashboard'}>
+      <ListItem button>
+        <ListItemIcon>      
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Dashboard" />
+    
+      </ListItem>
+    </Link>
    
-  
-    <ListItem button>
-      <ListItemIcon>
-        <MapIcon />
-      </ListItemIcon>
-      <ListItemText primary="MapInfo" />
-    </ListItem>
+    <Link style={{ textDecoration:'none', color:'unset'}} to={'/mapinfo'}>
+      <ListItem button>
+        <ListItemIcon>
+          <MapIcon />
+        </ListItemIcon>
+        <ListItemText primary="MapInfo" />
+      </ListItem>
+    </Link>
 
     <ListItem button>
       <ListItemIcon>
