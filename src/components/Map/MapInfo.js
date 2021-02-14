@@ -1,18 +1,9 @@
 import React from 'react';
+import Container from '@material-ui/core/Container';
 import { MapboxScene, PointLayer } from '@antv/l7-react';
 
-// const fetchData = async () => {
-//     const data = await fetch(
-//       'https://gw.alipayobjects.com/os/basement_prod/32e1f3ab-8588-46cb-8a47-75afb692117d.json',
-//     )
-//     .then(res => res.json())
-//     .then(data => {
-//         data.features = data.features.filter(item => {
-//         return item.properties.capacity > 800;
-//       })});
-    
-//     return data;
-// };
+import SideBar from '../SideBar/SideBar';
+import useStyles from "./styles";
 
 const mapCfg = {
     // center: [55.86812581416994, -4.2447524327457895],
@@ -26,12 +17,8 @@ const mapCfg = {
 }
 
 const MapInfo = () => {
+    const classes = useStyles();
     const [data, setData] = React.useState();
-    // promise....
-    // React.useEffect(() => {
-    //     const data = fetchData();
-    //     setData(data);
-    // }, []);
 
     React.useEffect(() => {
         const fetchData = async () => {
@@ -43,47 +30,52 @@ const MapInfo = () => {
                             return item.properties.capacity > 800;
                         });
           setData(data);
+          
         })};
-    
-    
         fetchData();
     }, []);
 
     return(
-        <div>
-            <MapboxScene
-             map={mapCfg}
-            >
-                {data && (
-                    <PointLayer
-                    key={'2'}
-                    source={{
-                      data: data,
-                    }}
-                    size={{
-                      field: 'capacity',
-                      values: [0, 16]
-                    }}
-                    color={{
-                      field: 'capacity',
-                      values: [
-                        '#34B6B7',
-                        '#4AC5AF',
-                        '#5FD3A6',
-                        '#7BE39E',
-                        '#A1EDB8',
-                        '#CEF8D6'
-                      ],
-                    }}
-                    shape={{
-                      values: 'circle',
-                    }}
-                    style={{
-                      opacity: 1,
-                    }}
-                  />
-                )}
-            </MapboxScene>
+        <div className={classes.root}>
+          <SideBar title={"Data Visualization"}/>
+            <div className={classes.content}>
+              <Container >     
+              <MapboxScene
+                map={mapCfg}
+              >
+                {/* use fild to bind fx */}
+                  {data && (
+                      <PointLayer
+                      key={'2'}
+                      source={{
+                        data: data,
+                      }}
+                      size={{
+                        field: 'capacity',
+                        values: [0, 16]
+                      }}
+                      color={{
+                        field: 'capacity',
+                        values: [
+                          '#34B6B7',
+                          '#4AC5AF',
+                          '#5FD3A6',
+                          '#7BE39E',
+                          '#A1EDB8',
+                          '#CEF8D6'
+                        ],
+                      }}
+                      shape={{
+                        values: 'circle',
+                      }}
+                      style={{
+                        opacity: 1,
+                      }}
+                    />
+                  )}
+              </MapboxScene>
+              </Container>
+            </div>
         </div>
     );
 };
