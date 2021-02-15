@@ -19,6 +19,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import { mainListItems, secondaryListItems } from '../listItems';
 import PieChart from '../PieChart/PieChart';
 import RecordTable from '../RecordTable/RecordTable';
+import MediaCard from '../Card/MediaCard';
+import ProjectCard from '../Card/ProjectCard';
 import useStyles from './styles.js';
 
 export default function Dashboard() {
@@ -79,16 +81,17 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={2}>
-            {/* Chart put next note*/}
-            <Grid item xs={12} md={5} lg={7}>
-              <Paper className={fixedHeightPaper}>
-                {/* <Chart /> */}
-                
-              </Paper>
+            <Grid item xs={12} md={6} lg={3}>
+              {/* <Paper className={fixedHeightPaper}> */}
+              <MediaCard />
+              {/* </Paper> */}
+            </Grid>
+            <Grid item xs={12} md={6} lg={3}>
+              <ProjectCard />              
             </Grid>
             {/* PieChart puts here put next note*/}
             {/* lg controls the widen */}
-            <Grid item xs={12} md={7} lg={5}>
+            <Grid item xs={12} md={6} lg={6}>
               <Paper className={fixedHeightPaper}>
                 <PieChart />
               </Paper>
