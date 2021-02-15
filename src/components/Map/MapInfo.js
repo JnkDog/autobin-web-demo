@@ -1,8 +1,7 @@
 import React from 'react';
-import Container from '@material-ui/core/Container';
 import { MapboxScene, PointLayer } from '@antv/l7-react';
 
-import SideBar from '../SideBar/SideBar';
+import SideBarForMap from '../SideBar/SideBarForMap';
 import useStyles from "./styles";
 
 const mapCfg = {
@@ -37,45 +36,49 @@ const MapInfo = () => {
 
     return(
         <div className={classes.root}>
-          <SideBar title={"Data Visualization"}/>
-            <div className={classes.content}>
-              <Container >     
-              <MapboxScene
-                map={mapCfg}
-              >
-                {/* use fild to bind fx */}
-                  {data && (
-                      <PointLayer
-                      key={'2'}
-                      source={{
-                        data: data,
-                      }}
-                      size={{
-                        field: 'capacity',
-                        values: [0, 16]
-                      }}
-                      color={{
-                        field: 'capacity',
-                        values: [
-                          '#34B6B7',
-                          '#4AC5AF',
-                          '#5FD3A6',
-                          '#7BE39E',
-                          '#A1EDB8',
-                          '#CEF8D6'
-                        ],
-                      }}
-                      shape={{
-                        values: 'circle',
-                      }}
-                      style={{
-                        opacity: 1,
-                      }}
-                    />
-                  )}
-              </MapboxScene>
-              </Container>
-            </div>
+          {/* <SideBar title={"Data Visualization"}/> */}
+       
+          <MapboxScene
+              map={mapCfg}
+              option={{
+                logoVisible: false,
+              }}
+          > 
+              <div className={classes.fab}>
+                <SideBarForMap />  
+              </div>
+                    
+              {/* use fild to bind fx */}
+              {data && (
+                  <PointLayer
+                  key={'2'}
+                  source={{
+                    data: data,
+                  }}
+                  size={{
+                    field: 'capacity',
+                    values: [0, 16]
+                  }}
+                  color={{
+                    field: 'capacity',
+                    values: [
+                      '#34B6B7',
+                      '#4AC5AF',
+                      '#5FD3A6',
+                      '#7BE39E',
+                      '#A1EDB8',
+                      '#CEF8D6'
+                    ],
+                  }}
+                  shape={{
+                    values: 'circle',
+                  }}
+                  style={{
+                    opacity: 1,
+                  }}
+                />
+              )}
+          </MapboxScene>           
         </div>
     );
 };

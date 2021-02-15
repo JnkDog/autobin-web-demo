@@ -18,7 +18,6 @@ export const mainListItems = (
           <DashboardIcon />
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
-    
       </ListItem>
     </Link>
    
