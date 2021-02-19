@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -6,29 +6,14 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import axios from 'axios';
+import moment from 'moment';
+
 import Title from '../Title/Title';
 
-// Generate Order Data
-function createData(id, date, name, type, accuracy, location) {
-  return { id, date, name, type, accuracy, location };
-}
+const URL = 'http://localhost:5000/records';
 
-// max len is 10 in this!
-const rows = [
-  createData(0, '16 Mar, 2019', 'Battery', '1', '99%', "home"),
-  createData(1, '16 Mar, 2020', 'Fish bone', '2', '70%', "company"),
-  createData(2, '16 Mar, 2019', 'Disposable plastic bag', '3', '88%', "school"),
-  createData(3, '16 Mar, 2019', 'Pericarp', '3', '70%', "company"),
-  createData(4, '20 Mar, 2019', 'Rotting meat', '4', '60%', "home"),
-  createData(5, '20 Mar, 2019', 'Rotting meat', '4', '60%', "home"),
-  createData(6, '20 Mar, 2019', 'Rotting meat', '4', '60%', "home"),
-  createData(7, '20 Mar, 2019', 'Rotting meat', '4', '60%', "home"),
-  createData(8, '20 Mar, 2019', 'Rotting meat', '4', '60%', "home"),
-  createData(9, '20 Mar, 2019', 'Rotting meat', '4', '60%', "home"),
-  createData(10, '20 Mar, 2019', 'Rotting meat', '4', '60%', "home"),
-//   createData(11, '20 Mar, 2019', 'Rotting meat', '4', '60%', "home"),
-
-];
+// 10 rocord looks better!
 
 function preventDefault(event) {
   event.preventDefault();
@@ -40,8 +25,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Orders() {
+export default function RecordTable() {
   const classes = useStyles();
+  const [data, setData] = useState([]);
+
+  // can optimize by checking new _id
+  // to decide render
+  useEffect(() => {
+      const fetchData = async () => {
+        const { data } = await axios(URL);
+        setData(data);
+      }
+
+      fetchData();
+  }, []);
+
   return (
     <React.Fragment>
       <Title>Recent Data</Title>
@@ -56,9 +54,9 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
+          {data.map((row) => (
+            <TableRow key={row._id}>
+              <TableCell>{moment(row.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</TableCell>
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.type}</TableCell>
               <TableCell>{row.accuracy}</TableCell>
