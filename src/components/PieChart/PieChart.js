@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Pie } from '@ant-design/charts';
 
-URL = 'http://localhost:5000/records/piechart';
+const URL_FETCH = 'http://localhost:5000/records/piechart';
 
 const PieChart = () => {
     const[data, setData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-          const { data } = await axios.get(URL);
+          const { data } = await axios.get(URL_FETCH);
           setData(data);
         }
   

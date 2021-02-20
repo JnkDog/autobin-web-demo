@@ -11,7 +11,7 @@ import moment from 'moment';
 
 import Title from '../Title/Title';
 
-const URL = 'http://localhost:5000/records';
+const URL_FETCH = 'http://localhost:5000/records';
 
 // 10 rocord looks better!
 
